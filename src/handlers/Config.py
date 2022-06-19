@@ -36,10 +36,15 @@ class ConfigHandler:
             self.critical = True
             return
 
+        if '--crit' in argv:
+            self.critical = True
+
         # load Options
-        self.expand: bool = bool(self._config['Options']['expand'])
-        self.close_dialog: bool = bool(self._config['Options']['close_dialog'])
-        self.detect: bool = bool(self._config['Options']['detect'])
+        self.expand = bool(self._config['Options']['expand'])
+        self.close_dialog = bool(self._config['Options']['close_dialog'])
+        self.detect = bool(self._config['Options']['detect'])
+        self.default_source = str(self._config['Options']['default_source'])
+        self.default_library = str(self._config['Options']['default_library'])
 
         # load Directories
         self.sources: dict = self._config['Sources']
@@ -59,6 +64,8 @@ class ConfigHandler:
         self._config['Options']['expand'] = True
         self._config['Options']['close_dialog'] = False
         self._config['Options']['detect'] = False
+        self._config['Options']['default_source'] = 0
+        self._config['Options']['default_library'] = 0
 
         self._config['Sources'] = {}
         self._config['Sources']['default_archive'] = DazHelpers.get_default_archive_path()
@@ -83,6 +90,8 @@ class ConfigHandler:
         self._config['Options']['expand'] = self.expand
         self._config['Options']['close_dialog'] = self.close_dialog
         self._config['Options']['detect'] = self.detect
+        self._config['Options']['default_source'] = self.default_source
+        self._config['Options']['default_library'] = self.default_library
 
         self._config['Dimensions'] = {}
         if size is not None:

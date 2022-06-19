@@ -1,6 +1,6 @@
 import wx.lib.mixins.inspection
 
-from myWX.MainFrame import MainFrame
+from myWX.AssetPackageManagerFrame import AssetPackageManagerFrame
 
 
 class AssetPackageManagerApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
@@ -8,7 +8,7 @@ class AssetPackageManagerApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 
     def OnInit(self):
         self.Init()
-        frame = MainFrame(None, -1, "Asset Package Manager")
+        frame = AssetPackageManagerFrame(None, -1, "Asset Package Manager")
         frame.Show()
         return True
 
